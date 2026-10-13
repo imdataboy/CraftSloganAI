@@ -1,0 +1,5 @@
+Alembic migrations for the existing SQLAlchemy schema.
+
+New empty database: python -m slogancraftai.initialize_db
+Existing database: back up first, verify the predecessor schema, then alembic upgrade head.
+See README.md and docs/P0_SECURITY.md for legacy ownership quarantine and migration precautions.

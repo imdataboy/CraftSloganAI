@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Signup page for Space Dynamic template">
+    <meta name="author" content="TemplateMo">
+    <title>Signup - Space Dynamic</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-space-dynamic.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 90px;
+        }
+
+
+/* Container Split for Desktop */
+.split-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+/* Left Panel Styling */
+.right-panel {
+    flex: 1;
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+}
+
+.right-panel h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.right-panel img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Right Panel Styling */
+.left-panel {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-wrapper h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Buttons and Form Controls */
+.form-control {
+    border-radius: 5px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.btn-primary {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #555;
+}
+
+.social-buttons a {
+    text-decoration: none;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    margin: 0 10px;
+    color: #666;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+
+.social-buttons a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) { /* Tablets */
+    .split-container {
+        flex-direction: column;
+    }
+
+    .right-panel {
+        flex: none;
+        border-bottom: 1px solid #ddd;
+        padding: 20px;
+    }
+
+    .left-panel {
+        flex: none;
+        padding: 20px;
+    }
+
+    .right-panel h1 {
+        font-size: 3rem;
+    }
+
+    .login-wrapper h3 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) { /* Phones */
+    .right-panel h1 {
+        font-size: 2.5rem;
+    }
+
+    .right-panel img {
+        max-width: 80%;
+    }
+
+    .left-panel {
+        padding: 15px;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    .btn-primary {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .social-buttons a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.2rem;
+    }
+    .main-nav .menu-trigger {
+        position: absolute; /* Make it positionable */
+        top: 50%; /* Vertically center in the left panel */
+        left: 535px; /* Align slightly inside from the left */
+        transform: translateY(-50%); /* Adjust for perfect centering */
+        margin-top: 50px;
+        margin-left: 0; /* Adjust left alignment */
+      }
+      .main-nav  {
+        left: 500px; /* Align slightly inside from the left */
+       
+      }
+}
+
+
+    </style>
+<script src="js/api.js"></script>
+</head>
+
+       <!-- ***** Preloader Start ***** -->
+       <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <ul class="nav">
+                            <li><a href="#top" class="active">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                        </ul>
+                        <a class="menu-trigger">
+                            <span>Menu</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <body>
+        <div class="split-container">
+            <!-- Right Panel (Now Left Panel) -->
+            <div class="left-panel">
+                <div class="signup-wrapper">
+                    <b><h3 style="color: #fe3f40">Create Account</h3></b>
+                    <br>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Full Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email Address" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Password" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Confirm Password" required>
+                        </div><br>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Or sign up with:</p>
+                        <div class="social-buttons">
+                            <a href="#"><i class="fab fa-google"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                        <p class="mt-3">
+                            Already have an account? <a href="signin.html" class="login-link" style="color: #fe3f40">Log In</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Left Panel (Now Right Panel) -->
+            <div class="right-panel">
+                <div>
+                    <h1>Join Us!</h1> 
+                    <a href="index.html" class="logo"><img src="assets/fonts/log.png" alt="Welcome Image"></a>
+                </div>
+            </div>
+        </div>
+        
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>© Copyright 2025. All Rights Reserved.
+                       <br> <b><a rel="nofollow" style="color: #fe3f40">SloganCraftAI</a></b></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script src="assets/js/imagesloaded.js"></script>
+    <script src="assets/js/templatemo-custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="js/signup.js"></script>
+    
+    <!-- ***** Login Section Start ***** -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+</body>
+
+</html>

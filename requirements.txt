@@ -1,0 +1,3 @@
+# Exact transitive versions come from the tested Python 3.12 lock.
+-c requirements.lock
+-e .

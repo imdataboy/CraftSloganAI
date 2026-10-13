@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Space Dynamic - SEO HTML5 Template</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-space-dynamic.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <style>
+        /* Your existing CSS styles */
+        .main-red-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .logo img {
+            max-width: 130px;
+        }
+
+        .nav2 {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin-top: 100px;
+            padding: 0;
+        }
+
+        .main-red-buttons {
+            display: flex;
+            gap: 12px;
+            margin-left: 0px;
+        }
+
+        .main-red-button a {
+            display: inline-block;
+            background-color: #fe3f40;
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff;
+            text-transform: capitalize;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-align: center;
+            letter-spacing: 0.25px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .main-red-button a:hover {
+            background-color: #333;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-nav ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin-bottom: 30px;
+            padding: 0px;
+        }
+
+        .nav li,
+        .nav2 li {
+            margin-right: 0px;
+        }
+
+        .main-red-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .main-red-button a {
+            display: inline-block;
+            background-color: #fe3f40;
+            color: #fff;
+            text-transform: capitalize;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .main-red-button a:hover {
+            background-color: #333;
+        }
+
+        .nav2 {
+            margin-left: auto;
+        }
+
+        .about-us {
+            padding: 140px 0px 140px 0px;
+        }
+
+        .about-us .services .item {
+            margin-bottom: 100px;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 100px;
+            justify-content: space-between;
+        }
+
+        .service-box {
+            flex: 1 1 1 calc(0% - 50px);
+            background: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            margin-top: 15px;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-box .icon {
+            width: 25px;
+            height: 25px;
+            margin: 0 auto 15px;
+            background-color: #fe3f40;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .service-box .icon img {
+            width: 40%;
+        }
+
+        .service-box h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .service-box p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .service-box {
+                flex: 1 1 100%;
+            }
+
+            .services {
+                gap: 20px;
+            }
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .main-banner {
+            padding: 120px 0px 120px 0px;
+        }
+
+        /* Hide dropdown menu by default */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .dropdown-menu.show {
+            display: block; /* Show dropdown when .show class is added */
+        }
+
+        .dropdown-item {
+            color: #333;
+            padding: 8px 15px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f8f8;
+            color: #fe3f40;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .fas.fa-user-circle {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Default dropdown menu styles */
+        .dropdown-menu {
+          display: none; /* Hidden by default */
+          position: absolute;
+          top: 100%; /* Align under the button */
+          right: 0;
+          background-color: #fff;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 10px 0;
+          border-radius: 5px;
+          z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+          display: block; /* Visible when toggled */
+        }
+
+        .dropdown-item {
+          color: #333;
+          padding: 8px 15px;
+          font-size: 14px;
+          text-decoration: none;
+          transition: background-color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+          background-color: #f8f8f8;
+          color: #fe3f40;
+        }
+
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          right: 0;
+          background-color: #fff;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 10px 0;
+          border-radius: 5px;
+          z-index: 1000;
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        .dropdown-menu.show {
+          display: block;
+          opacity: 1;
+        }
+
+ 
+
+     
+    </style>
+<script src="js/api.js"></script>
+</head>
+
+<body>
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <img src="assets/fonts/log.png" alt="Logo">
+                </a>
+                <ul class="nav">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="menuPage.html">Menu</a></li>
+                    <li><a href="Post.html">Tutorial</a></li>
+                    <li><a href="run.html">Run Agents</a></li>
+                    <li><a href="draft.html">Draft</a></li>
+                </ul>
+              
+              
+              
+               <div class="main-red-buttons">
+                <div class="main-red-button" id="signin-button">
+                    <a href="signin.html">Sign In</a>
+                </div>
+                <div class="main-red-button" id="signup-button">
+                    <a href="signup.html">Sign Up</a>
+                </div>
+            </div>
+            
+            <div class="dropdown" id="profile-dropdown" style="display: none;">
+              <!-- Profile Icon -->
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" style="background: none; border: none; padding: 0; cursor: pointer;">
+                  <i class="fas fa-user-circle fa-2x" style="color: #333;"></i>
+              </button>
+          
+              <!-- Dropdown Menu -->
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="draft.html">Draft</a></li>
+                  <li><a class="dropdown-item" href="change-password.html">Change Password</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="signOut()">Sign Out</a></li>
+              </ul>
+          </div>
+          
+            
+            </nav>
+        </div>
+    </header>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // DOM Elements
+        const accessToken = localStorage.getItem('accessToken'); // Simulate signed-in state
+        const signinButton = document.getElementById('signin-button');
+        const signupButton = document.getElementById('signup-button');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+        // Ensure dropdown menu starts hidden
+        dropdownMenu.classList.remove('show');
+    
+        // Toggle visibility of profile dropdown and sign-in/up buttons
+        if (accessToken) {
+            if (signinButton) signinButton.style.display = 'none';
+            if (signupButton) signupButton.style.display = 'none';
+            if (profileDropdown) profileDropdown.style.display = 'block';
+        } else {
+            if (profileDropdown) profileDropdown.style.display = 'none';
+        }
+    
+        // Add event listener for dropdown toggle
+        if (dropdownToggle) {
+            dropdownToggle.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent event propagation
+                dropdownMenu.classList.toggle('show'); // Toggle 'show' class
+            });
+        }
+    
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!dropdownMenu.contains(event.target) && !dropdownToggle.contains(event.target)) {
+                dropdownMenu.classList.remove('show'); // Remove 'show' class
+            }
+        });
+    });
+    
+    </script>
+  
+    <!-- Header Area End -->
+
+
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <h6>Welcome to SloganCraftAI</h6>
+                <h2>Transforming <em>Insights</em> into Engaging <span> Marketing</span> Moments</h2>
+                
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="assets/images/banner-right-image.png" alt="team meeting">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="about-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="left-image wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+            <img src="assets/images/about-left-image.png" alt="person graphic">
+          </div>
+        </div>
+              <div class="col-lg-8">
+                <div class="services">
+                  <div class="row">
+                    <!-- Email Insights -->
+                    <div class="col-lg-6 col-md-6">
+                      <div class="service-box">
+                        <div class="icon">
+                          <img src="assets/images/service-icon-01.png" alt="Email Insights">
+                        </div>
+                        <h4>Email Insights</h4>
+                        <p>Automatically extract meaningful insights from emails with AI precision.</p>
+                      </div>
+                    </div>
+                    <!-- Slogan Generation -->
+                    <div class="col-lg-6 col-md-6">
+                      <div class="service-box">
+                        <div class="icon">
+                          <img src="assets/images/service-icon-02.png" alt="Slogan Generation">
+                        </div>
+                        <h4>Slogan Generation</h4>
+                        <p>Generate catchy and impactful slogans tailored to your email content.</p>
+                      </div>
+                    </div>
+                    <!-- Visual Creativity -->
+                    <div class="col-lg-6 col-md-6">
+                      <div class="service-box">
+                        <div class="icon">
+                          <img src="assets/images/service-icon-03.png" alt="Visual Creativity">
+                        </div>
+                        <h4>Visual Creativity</h4>
+                        <p>Create stunning images that align with your slogans and messaging.</p>
+                      </div>
+                    </div>
+                    <!-- LinkedIn Posting -->
+                    <div class="col-lg-6 col-md-6">
+                      <div class="service-box">
+                        <div class="icon">
+                          <img src="assets/images/service-icon-04.png" alt="LinkedIn Posting">
+                        </div>
+                        <h4>Seamless LinkedIn Posting</h4>
+                        <p>Effortlessly schedule or post engaging content directly to LinkedIn.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+  
+
+  <div id="services" class="our-services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
+          <div class="left-image">
+            <img src="assets/images/services-left-image.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
+          <div class="section-heading">
+            <h2>Automate Your <span>Marketing</span> with<span> SloganCraftAI</span></h2><br>
+            <h6> What SloganCraft AI Offers?</h6>
+            <p> Revolutionize your workflow with SloganCraft AI, an AI-powered web application designed to simplify and enhance your marketing efforts by automating critical tasks.
+              Let SloganCraft AI take your marketing efforts to the next level by automating insights, creativity, and publishing, all in one place.
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="first-bar progress-skill-bar">
+                <h4>Email Analysis</h4>
+                <span>84%</span>
+                <div class="filled-bar"></div>
+                <div class="full-bar"></div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="second-bar progress-skill-bar">
+                <h4>Slogan Creation</h4>
+                <span>88%</span>
+                <div class="filled-bar"></div>
+                <div class="full-bar"></div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="third-bar progress-skill-bar">
+                <h4>Visual Assets</h4>
+                <span>94%</span>
+                <div class="filled-bar"></div>
+                <div class="full-bar"></div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="faurd-bar progress-skill-bar">
+                <h4>LinkedIn Integration</h4>
+                <span>100%</span>
+                <div class="filled-bar"></div>
+                <div class="filled-bar"></div>
+                <div class="full-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="portfolio" class="our-portfolio section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading  wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+            <h2>Why Choose <span>SloganCraft AI</span>?</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-sm-6">
+          <a href="#">
+            <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+              <div class="hidden-content">
+                <h4>Smart Email Filtering</h4>
+                <p>Find meaningful emails using AI precision.</p>
+              </div>
+              <div class="showed-content">
+                <img src="assets/images/portfolio-image.png" alt="">
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <a href="#">
+            <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+              <div class="hidden-content">
+                <h4>Catchy Slogan Generation</h4>
+                <p>Generate impactful slogans tailored to emails.</p>
+              </div>
+              <div class="showed-content">
+                <img src="assets/images/portfolio-image.png" alt="">
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <a href="#">
+            <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.5s">
+              <div class="hidden-content">
+                <h4>Custom Visual Content</h4>
+                <p>Create stunning visuals to match your slogans.</p>
+              </div>
+              <div class="showed-content">
+                <img src="assets/images/portfolio-image.png" alt="">
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <a href="#">
+            <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+              <div class="hidden-content">
+                <h4>Effortless LinkedIn Posting</h4>
+                <p>Schedule and post engaging content effortlessly.</p>
+              </div>
+              <div class="showed-content">
+                <img src="assets/images/portfolio-image.png" alt="">
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <div class="section-heading">
+            <h2>Get in Touch with SloganCraftAI</h2>
+            <p>Let us help you create impactful marketing campaigns powered by AI-driven email insights and LinkedIn-ready content.</p>
+            <div class="phone-info">
+              <h4>Have a question or want to grow your business?  <BR><BR>Call us at:<span><i class="fa fa-phone"></i> <a href="#">010-020-0340</a></span></h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="contact" action="mailto:sihamealami21@gmail.com, ilyassacha2@gmail.com" method="post" enctype="text/plain" method="post">
+            <div class="row">
+              <div class="col-lg-6">
+                <fieldset>
+                  <input type="name" name="name" id="name" placeholder="Name" autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <input type="surname" name="surname" id="surname" placeholder="Surname" autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <input type="text" name="email" id="email" pattern="[^ @]@[^ @]" placeholder="Your Email" required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <textarea name="message" type="text" class="form-control" id="message" placeholder="Message" required=""></textarea>  
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="main-button ">Send Message</button>
+                </fieldset>
+              </div>
+            </div>
+            <div class="contact-dec">
+              <img src="assets/images/contact-decoration.png" alt="">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Footer Start ***** -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p>© Copyright 2025. All Rights Reserved.
+                   <br> <b><a rel="nofollow" style="color: #fe3f40">SloganCraftAI</a></b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+  <!-- Scripts -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/imagesloaded.js"></script>
+  <script src="assets/js/templatemo-custom.js"></script>
+
+</body>
+</html>

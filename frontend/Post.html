@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Schema Workflow Integration</title>
+        <link rel="stylesheet" href="style2.css">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <!-- Other necessary CSS links -->
+                <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Additional CSS Files -->
+        <link rel="stylesheet" href="assets/css/fontawesome.css">
+        <link rel="stylesheet" href="assets/css/templatemo-space-dynamic.css">
+        <link rel="stylesheet" href="assets/css/animated.css">
+        <link rel="stylesheet" href="assets/css/owl.css">
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+    
+            .workflow {
+                text-align: center;
+                padding: 20px;
+            }
+    
+            .workflow h1 {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+    
+            .workflow p {
+                font-size: 1rem;
+                color: #666;
+                margin-bottom: 30px;
+            }
+    
+            .steps {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                position: relative;
+            }
+    
+            .step {
+                text-align: center;
+                position: relative;
+            }
+    
+            .step button {
+                background-color: #fe3f40;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.3s;
+            }
+    
+            .step button:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+            }
+    
+            .step button:hover:enabled {
+                background-color: #333;
+            }
+    
+            .step .icon {
+                font-size: 30px;
+                color: #fe3f40;
+                margin-bottom: 10px;
+            }
+    
+            .connector {
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                width: 40px;
+                height: 3px;
+                background-color: #ccc;
+                transform: translateY(-50%);
+            }
+    
+            .step.completed .connector {
+                background-color: #fe3f40;
+            }
+    
+            .step:last-child .connector {
+                display: none;
+            }
+    
+            .progress-container {
+                position: absolute;
+                width: 80%;
+                height: 5px;
+                background: #e0e0e0;
+                top: 50%;
+                left: 10%;
+                transform: translateY(-50%);
+                z-index: -2;
+            }
+    
+            .progress-bar {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                height: 5px;
+                width: 0%;
+                background-color: #fe3f40;
+                transition: width 0.5s ease;
+                z-index: -1;
+            }
+            /* Default dropdown menu styles */
+        .dropdown-menu {
+          display: none; /* Hidden by default */
+          position: absolute;
+          top: 100%; /* Align under the button */
+          right: 0;
+          background-color: #fff;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 10px 0;
+          border-radius: 5px;
+          z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+          display: block; /* Visible when toggled */
+        }
+
+        .dropdown-item {
+          color: #333;
+          padding: 8px 15px;
+          font-size: 14px;
+          text-decoration: none;
+          transition: background-color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+          background-color: #f8f8f8;
+          color: #fe3f40;
+        }
+
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          right: 0;
+          background-color: #fff;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 10px 0;
+          border-radius: 5px;
+          z-index: 1000;
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        .dropdown-menu.show {
+          display: block;
+          opacity: 1;
+        }
+        </style>
+    <script src="js/api.js"></script>
+</head>
+
+  
+    <style>
+      .main-red-buttons {
+      display: flex; /* Align items in a row */
+      gap: 10px; /* Add space between buttons */
+    }
+    
+    
+    .logo img {
+      max-width: 130px; /* Adjust the size of the logo */
+    }
+    
+    
+    /* Align the nav2 to be inline with the main menu */
+    .nav2 {
+      display: flex;
+      align-items: center; /* Align vertically with other menu items */
+      list-style: none;
+      margin-top: 100px;
+      padding: 0;
+    }
+    
+    /* Align the buttons inline */
+    .main-red-buttons {
+      display: flex;
+      gap: 12px; /* Space between buttons */
+      margin-left: 0px; /* Adjust the gap between buttons and other menu items */
+    }
+    
+    /* Style individual buttons */
+    .main-red-button a {
+        display: inline-block;
+        background-color: #fe3f40; /* Red color */
+        font-size: 15px;
+        font-weight: 500;
+        color: #fff;
+        text-transform: capitalize;
+        padding: 12px 25px;
+        border-radius: 25px;
+        text-align: center;
+        letter-spacing: 0.25px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .main-red-button a:hover {
+        background-color: #333; /* Change color on hover */
+      }
+    
+    
+    .main-red-button a:hover {
+      background-color: #333; /* Hover effect */
+    }
+    
+    /* Adjust spacing between the last menu item and the buttons */
+    .nav li:last-child {
+      margin-right: 0; /* Ensure no extra spacing from last menu item */
+    }
+    
+    /* Align the navigation menu and buttons */
+    .main-nav {
+      display: flex;
+      justify-content: space-between; /* Spread items across the navbar */
+      align-items: center; /* Vertically align items */
+    }
+    
+    /* Align nav and nav2 in a single row */
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      margin-bottom: 30px;
+    
+      padding: 0px;
+    }
+    
+    /* Add spacing between menu items */
+    .nav li, .nav2 li {
+      margin-right: 0px; /* Space between items */
+    }
+    
+    
+    /* Style buttons in nav2 */
+    .main-red-buttons {
+      display: flex; /* Align buttons in a row */
+      gap: 10px; /* Add spacing between buttons */
+    }
+    
+    .main-red-button a {
+      display: inline-block;
+      background-color: #fe3f40; /* Button color */
+      color: #fff;
+      text-transform: capitalize;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .main-red-button a:hover {
+      background-color: #333; /* Change color on hover */
+    }
+    
+    /* Ensure proper spacing between nav and nav2 */
+    .nav2 {
+      margin-left: auto; /* Push buttons to the right side */
+    }
+  
+    
+    /* Adjust for smaller screens */
+    @media (max-width: 768px) {
+      .service-box {
+        flex: 1 1 100%; /* Single column on smaller screens */
+      }
+    
+      .services {
+        gap: 20px; /* Reduce spacing for smaller screens */
+      }
+    }
+    
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+ 
+    </style>
+      
+<body>
+    
+      <!-- ***** Preloader Start ***** -->
+      <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+          <span class="dot"></span>
+          <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <!-- ***** Preloader End ***** -->
+    
+        <!-- Header Area Start -->
+        <header class="header-area">
+            <div class="container">
+                <nav class="main-nav">
+                    <a href="index.html" class="logo">
+                        <img src="assets/fonts/log.png" alt="Logo">
+                    </a>
+                    <ul class="nav">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="menuPage.html">Menu</a></li>
+                        <li><a href="Post.html">Tutorial</a></li>
+                        <li><a href="run.html">Run Agents</a></li>
+                        <li><a href="draft.html">Draft</a></li>
+                    </ul>
+                  
+                  
+                  
+                   <div class="main-red-buttons">
+                    <div class="main-red-button" id="signin-button">
+                        <a href="signin.html">Sign In</a>
+                    </div>
+                    <div class="main-red-button" id="signup-button">
+                        <a href="signup.html">Sign Up</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown" id="profile-dropdown" style="display: none;">
+                  <!-- Profile Icon -->
+                  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" style="background: none; border: none; padding: 0; cursor: pointer;">
+                      <i class="fas fa-user-circle fa-2x" style="color: #333;"></i>
+                  </button>
+              
+                  <!-- Dropdown Menu -->
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="draft.html">Draft</a></li>
+                      <li><a class="dropdown-item" href="change-password.html">Change Password</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="signOut()">Sign Out</a></li>
+                  </ul>
+              </div>
+              
+                
+                </nav>
+            </div>
+        </header>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const accessToken = localStorage.getItem('accessToken'); // Simulate signed-in state
+            const signinButton = document.getElementById('signin-button');
+            const signupButton = document.getElementById('signup-button');
+            const profileDropdown = document.getElementById('profile-dropdown');
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+        
+            // Ensure dropdown menu starts hidden
+            dropdownMenu.classList.remove('show');
+        
+            // Toggle visibility of profile dropdown and sign-in/up buttons
+            if (accessToken) {
+                if (signinButton) signinButton.style.display = 'none';
+                if (signupButton) signupButton.style.display = 'none';
+                if (profileDropdown) profileDropdown.style.display = 'block';
+            } else {
+                if (profileDropdown) profileDropdown.style.display = 'none';
+            }
+        
+            // Add event listener for dropdown toggle
+            if (dropdownToggle) {
+                dropdownToggle.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent event propagation
+                    dropdownMenu.classList.toggle('show'); // Toggle 'show' class
+                });
+            }
+        
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!dropdownMenu.contains(event.target) && !dropdownToggle.contains(event.target)) {
+                    dropdownMenu.classList.remove('show'); // Remove 'show' class
+                }
+            });
+        });
+        
+        </script>
+          <style>
+              /* Existing styles */
+              /* Add new styles for the guide section */
+              .guide {
+                  text-align: center;
+                  padding: 50px;
+                  background-color: #f9f9f9;
+                  margin-top: 100px;
+              }
+              .guide h2 {
+                  font-size: 2rem;
+                  margin-bottom: 20px;
+              }
+              .guide p {
+                  font-size: 1rem;
+                  color: #666;
+                  margin-bottom: 30px;
+              }
+              .guide-steps {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 40px;
+                  position: relative;
+              }
+              .guide-step {
+                  text-align: center;
+                  position: relative;
+              }
+              .guide-step .icon {
+                  font-size: 30px;
+                  color: #fe3f40;
+                  margin-bottom: 10px;
+              }
+              .guide-step h3 {
+                  font-size: 1.5rem;
+                  margin-bottom: 10px;
+              }
+              .guide-step p {
+                  font-size: 1rem;
+                  color: #666;
+                  line-height: 1.6;
+              }
+              .guide-progress {
+                  position: relative;
+                  margin-top: 30px;
+              }
+              .guide-progress-bar {
+                  position: absolute;
+                  top: 50%;
+                  left: 0;
+                  transform: translateY(-50%);
+                  height: 5px;
+                  width: 0%;
+                  background-color: #fe3f40;
+                  transition: width 0.5s ease;
+              }
+              .guide-progress-container {
+                  position: relative;
+                  width: 80%;
+                  margin: 0 auto;
+              }
+          </style>
+         
+              <style>
+              /* General styles */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.guide {
+    text-align: center;
+    padding: 50px;
+    background-color: #f9f9f9;
+    margin-bottom: 0px;
+}
+
+.guide h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.guide p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Guide steps */
+.guide-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.guide-step {
+    flex: 1 1 calc(25% - 20px); /* 4 boxes per row */
+    max-width: 300px;
+    min-width: 250px;
+    height: 250px;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.guide-step:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.guide-step.active {
+    border: 2px solid #fe3f40;
+}
+
+.guide-step .icon {
+    font-size: 40px;
+    color: #fe3f40;
+    margin-bottom: 15px;
+}
+
+.guide-step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.guide-step p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Progress bar */
+.guide-progress {
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.guide-progress-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 5px;
+    width: 0%;
+    background-color: #fe3f40;
+    transition: width 0.5s ease;
+}
+
+.guide-progress-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    height: 5px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+/* Step details */
+.guide-step-details {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.guide-step-details h4 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.guide-step-details p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+.guide-step-details img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .guide-step {
+        flex: 1 1 calc(50% - 20px); /* 2 boxes per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .guide-step {
+        flex: 1 1 100%; /* Stacks the boxes vertically on small screens */
+    }
+}
+ 
+        /* Video Section */
+        .video-section {
+            position: relative;
+            background-image: url(assets/images/about-bg.png);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            padding: 180px 0px 350px 0px;
+            margin-top: 0px;
+            background-color:#f9f9f9;
+
+        }
+
+        .video-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-section p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: #fdfdfd;
+        }
+
+        .video-container {
+            position: relative;
+            display: inline-block;
+            width: 80%;
+            max-width: 900px;
+            height: 500px;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .play-overlay:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .play-icon {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .play-overlay:hover .play-icon {
+            transform: scale(1.1);
+            color: #ffdfdf;
+        }
+
+        /* Section Animation */
+        .video-section::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .video-section::after {
+            content: "";
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .video-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .video-section p {
+                font-size: 1rem;
+            }
+
+            .video-container {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    
+</style>
+
+              
+        
+ 
+              <main>
+                <div class="guide">
+                    <h2>Guide to Using SloganCraftAI</h2>
+                    <p>Welcome to SloganCraftAI. Follow these steps to get started.</p>
+                    
+                    <!-- Guide step details -->
+                    <div class="guide-step-details" id="guide-step-details">
+                        <h4 style="color: #fe3f40;">Sign Up</h4>
+                        <p>To get started with SloganCraftAI, you need to create an account. Click on the "Sign Up" button and fill in your details. Once registered, you'll have access to all our features.</p>
+                    </div>
+            
+                    <!-- Progress bar now between the step details and guide steps -->
+                    <div class="guide-progress">
+                        <div class="guide-progress-container">
+                            <div class="guide-progress-bar" id="guide-progress-bar"></div>
+                        </div>
+                    </div>
+            
+                    <!-- Guide steps -->
+                    <div class="guide-steps">
+                        <div class="guide-step active" data-step="1">
+                            <i class="uil uil-user icon"></i>
+                            <h3>Sign Up</h3>
+                            <p>Create an account to access our services.</p>
+                        </div>
+                        <div class="guide-step" data-step="2">
+                            <i class="uil uil-signin icon"></i>
+                            <h3>Sign In</h3>
+                            <p>Login to your account to begin.</p>
+                        </div>
+                        <div class="guide-step" data-step="3">
+                            <i class="uil uil-linkedin icon"></i>
+                            <h3>Connect LinkedIn</h3>
+                            <p>Link your LinkedIn account for social integration.</p>
+                        </div>
+                        <div class="guide-step" data-step="4">
+                            <i class="uil uil-google icon"></i>
+                            <h3>Connect Gmail</h3>
+                            <p>Link your Gmail account for email management.</p>
+                        </div>
+                        <div class="guide-step" data-step="5">
+                            <i class="uil uil-lightbulb-alt icon"></i>
+                            <h3>Generate Slogan</h3>
+                            <p>Use our tools to create a catchy slogan for your brand.</p>
+                        </div>
+                        <div class="guide-step" data-step="6">
+                            <i class="uil uil-check-circle icon"></i>
+                            <h3>Approve Post</h3>
+                            <p>Review and approve posts before they go live.</p>
+                        </div>
+                        <div class="guide-step" data-step="7">
+                            <i class="uil uil-calendar-alt icon"></i>
+                            <h3>Schedule Post</h3>
+                            <p>Schedule your posts for optimal posting times.</p>
+                        </div>
+                        <div class="guide-step" data-step="8">
+                            <i class="uil uil-eye icon"></i>
+                            <h3>View Events</h3>
+                            <p>Keep track of upcoming events and analytics.</p>
+                        </div>
+                    </div>
+                </div>
+<!-- Video Section -->
+<section class="video-section">
+    <h2>Discover Our Workflow</h2>
+    <p>Follow our guide to understand the step-by-step process we use to achieve efficiency and innovation.</p>
+    <div class="video-container">
+        <video id="workflowVideo" controls poster="poster.jpg">
+            <source src="test.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="play-overlay">
+            <i class="uil uil-play-circle play-icon"></i>
+        </div>
+    </div>
+</section>
+
+
+            </main>
+            
+          
+           
+          
+          <!-- Footer Area Start -->
+          <footer>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-12 text-center">
+                          <p>© Copyright 2025. All Rights Reserved.
+                             <br> <b><a rel="nofollow" style="color: #fe3f40">SloganCraftAI</a></b></p>
+                      </div>
+                  </div>
+              </div>
+          </footer>
+          <!-- Scripts -->
+<!-- Scripts -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/owl-carousel.js"></script>
+<script src="assets/js/animation.js"></script>
+<script src="assets/js/imagesloaded.js"></script>
+<script src="assets/js/templatemo-custom.js"></script>
+<script src="/main.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const steps = document.querySelectorAll('.guide-step');  // Adjusted class name
+        const progressBar = document.getElementById('guide-progress-bar');  // Adjusted to match the new ID for the progress bar
+        const stepDetails = [
+            {
+                title: "Sign Up",
+                description: "To get started with SloganCraftAI, you need to create an account. Click on the 'Sign Up' button and fill in your details. Once registered, you'll have access to all our features.",
+            },
+            {
+                title: "Sign In",
+                description: "After signing up, log in to your account using your credentials. This will give you access to your dashboard and all the tools you need.",
+            },
+            {
+                title: "Connect LinkedIn",
+                description: "Link your LinkedIn account to SloganCraftAI to enable social media integration. This allows you to share your slogans directly on LinkedIn.",
+            },
+            {
+                title: "Connect Gmail",
+                description: "Connect your Gmail account to manage email campaigns and communications directly from SloganCraftAI.",
+            },
+            {
+                title: "Generate Slogan",
+                description: "Use our AI-powered tools to create catchy and unique slogans for your brand. Customize and refine them to suit your needs.",
+            },
+            {
+                title: "Approve Post",
+                description: "Review and approve your slogans before they go live. Make sure they align with your brand's voice and messaging.",
+            },
+            {
+                title: "Schedule Post",
+                description: "Schedule your posts for optimal times to maximize engagement. Use our analytics tools to determine the best posting schedule.",
+            },
+            {
+                title: "View Events",
+                description: "Track upcoming events and monitor the performance of your posts. Use this data to refine your strategy.",
+            }
+        ];
+    
+        steps.forEach((step, index) => {
+            step.addEventListener('click', () => {
+                if (!step.classList.contains('completed')) {
+                    steps.forEach(s => s.classList.remove('active'));  // Remove active class from all
+                    step.classList.add('active', 'completed');  // Mark the current step as active and completed
+    
+                    // Update the progress bar width dynamically based on the completed steps
+                    const progress = ((index + 1) / steps.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+
+                        // Change the color of the active step title to red
+                    const title = step.querySelector('h3');
+                    if (title) {
+                        title.style.color = '#fe3f40';  // Set red color for active title
+                    }
+    
+                    // Update connector color dynamically
+                    const currentStep = step;
+                    if (currentStep.querySelector('.connector')) {
+                        currentStep.querySelector('.connector').style.backgroundColor = '#fe3f40';
+                    }
+    
+                    // Enable the next step
+                    if (steps[index + 1]) {
+                        steps[index + 1].classList.remove('disabled');
+                    }
+    
+                    // Update the step details
+                    const stepDetailsContainer = document.getElementById('guide-step-details');
+                    stepDetailsContainer.innerHTML = `
+                        <h4 style="color:#fe3f40">${stepDetails[index].title}</h4>
+                        <p>${stepDetails[index].description}</p>
+                    `;
+                }
+            });
+        });
+    })
+    </script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('workflowVideo');
+        const playOverlay = document.querySelector('.play-overlay');
+
+        // Hide play overlay when video starts playing
+        video.addEventListener('play', () => {
+            playOverlay.style.opacity = '0';
+            playOverlay.style.pointerEvents = 'none';
+        });
+
+        // Show play overlay when video is paused
+        video.addEventListener('pause', () => {
+            playOverlay.style.opacity = '1';
+            playOverlay.style.pointerEvents = 'auto';
+        });
+
+        // Toggle play/pause on overlay click
+        playOverlay.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    });
+</script>
+
+      </body>
+      </html>

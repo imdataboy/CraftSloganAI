@@ -1,0 +1,3 @@
+# Same application dependencies, with the test extra from pyproject.toml.
+-c requirements.lock
+-e .[test]

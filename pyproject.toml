@@ -1,0 +1,52 @@
+[project]
+name = "slogancraftai"
+version = "0.1.0"
+description = "Five-agent marketing draft generation with authenticated review and LinkedIn publishing"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "alembic==1.14.0",
+    "APScheduler==3.11.0",
+    "bcrypt==4.2.1",
+    "crewai==0.86.0",
+    "cryptography==46.0.5",
+    "Flask==3.1.0",
+    "google-api-python-client==2.156.0",
+    "google-auth==2.62.0",
+    "google-auth-oauthlib==1.2.1",
+    "Pillow==11.1.0",
+    "psycopg2-binary==2.9.10",
+    "pydantic==2.14.1",
+    "PyJWT==2.10.1",
+    "python-dotenv==1.0.1",
+    "PyYAML==6.0.2",
+    "requests==2.32.5",
+    # CrewAI 0.86 imports pkg_resources, removed by newer setuptools.
+    "setuptools==80.9.0",
+    "SQLAlchemy==2.0.36",
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.4", "httplib2==0.32.0"]
+
+[project.scripts]
+slogancraftai = "slogancraftai.main:serve"
+run_crew = "slogancraftai.main:serve"
+
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/slogancraftai"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
